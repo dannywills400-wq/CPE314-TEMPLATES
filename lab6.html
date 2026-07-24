@@ -2,15 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Manipulation</title>
+
+    <style>
+        .box {
+            background-color: lightblue;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        #output {
+            margin-top: 15px;
+            font-weight: bold;
+            color: darkblue;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="title">Original Title</h1>
+
+    <h1 id="title">23/EG/CO/116</h1>
+
     <button onclick="changeTitle()">Change Title</button>
+
+    <p id="paragraph">
+        This paragraph will change colour using JavaScript.
+    </p>
+
+    <ul id="courseList">
+        <li>HTML</li>
+        <li>CSS</li>
+    </ul>
+
+    <div class="box">
+        This content can be shown or hidden.
+    </div>
+
+    <button onclick="toggleBox()">Show / Hide Box</button>
+
+    <br><br>
+
+    <input type="text" id="studentName" placeholder="Enter your name">
+    <button onclick="displayName()">Display Name</button>
+
+    <div id="output"></div>
+
     <script>
+
         function changeTitle() {
-            document.getElementById("title").innerHTML = "New Title!";
+            document.getElementById("title").innerHTML = "DOM Manipulation Successful";
+            document.getElementById("paragraph").style.color = "crimson";
+
+            let newItem = document.createElement("li");
+            newItem.textContent = "JavaScript";
+            document.getElementById("courseList").appendChild(newItem);
+
+            let missingElement = document.getElementById("missing");
+
+            if (missingElement === null) {
+                console.log("Element with ID 'missing' does not exist.");
+            }
         }
+
+        function toggleBox() {
+            let box = document.querySelector(".box");
+
+            if (box.style.display === "none") {
+                box.style.display = "block";
+            } else {
+                box.style.display = "none";
+            }
+        }
+
+        function displayName() {
+            let name = document.getElementById("studentName").value;
+
+            document.getElementById("output").textContent =
+                "Welcome, " + name + "!";
+        }
+
     </script>
+
 </body>
 </html>
